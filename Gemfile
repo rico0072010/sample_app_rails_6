@@ -5,6 +5,9 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+gem 'image_processing', '1.11.0'
+gem 'mini_magick', '4.10.1'
+gem 'active_storage_validations', '0.9.0'
 gem 'bootstrap-sass', '3.4.1'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
@@ -61,6 +64,7 @@ end
 
 group :production do
   gem 'pg', '1.2.3'
+  gem 'aws-sdk-s3', '1.79.1', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
