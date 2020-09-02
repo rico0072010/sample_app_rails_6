@@ -58,10 +58,10 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  # Defines a proto-feed.
-  # See 'Following users' for the full implementation
+  # Returns a user's status feed.
   def feed
-    Micropost.where('user_id IN (?) OR user_id = ?', following_ids, id)
+    part_of_feed = 'relationships.follower_id = :id or microposts.user_id = :id'
+    Micropost.left_outer_joins(user: :followers).where(part_of_feed, { id: id })
   end
 
   # Follows a user.
